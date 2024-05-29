@@ -10,7 +10,7 @@ const App = () => {
   const [stompClient, setStompClient] = useState(null);
 
   useEffect(() => {
-    const socket = new SockJS('http://localhost:8080/ws');
+    const socket = new SockJS('http://175.45.200.47/ws');
     const client = Stomp.over(socket);
 
     client.connect({}, (frame) => {
