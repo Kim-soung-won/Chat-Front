@@ -11,8 +11,10 @@ const ChatPage = () => {
   const [nickname, setNickname] = useState('');
   const [stompClient, setStompClient] = useState(null);
 
+  const url = `http://175.45.200.47`;
+
   useEffect(() => {
-    const socket = new SockJS('http://localhost/ws');
+    const socket = new SockJS(`${url}/ws`);
     const client = Stomp.over(socket);
 
     client.connect({}, (frame) => {
@@ -28,7 +30,7 @@ const ChatPage = () => {
       console.error("STOMP ERROR", error);
     })
 
-    axios.get(`http://localhost/chat/history?id=${id}`)
+    axios.get(`${url}/chat/history?id=${id}`)
       .then((response) => {
         setMessages(response.data);
       })
