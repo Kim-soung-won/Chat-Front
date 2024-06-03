@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Stomp from 'stompjs';
 import SockJS from "sockjs-client";
+import axios from "axios";
 
 const ChatPage = () => {
   const { id } = useParams();
@@ -26,6 +27,15 @@ const ChatPage = () => {
     },(error) => {
       console.error("STOMP ERROR", error);
     })
+
+    axios.get(`http://localhost/chat/history?id=${id}`)
+      .then((response) => {
+        setMessages(response.data);
+      })
+      .catch((error) => {
+        console.error("ERROR LOADING CHAT HISTORY", error);
+      });
+
     return () => {
       if (client && client.connected) {
         client.disconnect(() => {
@@ -72,11 +82,22 @@ const ChatPage = () => {
       </div>
       <div>
         <h2>채팅 로그</h2>
-        {messages.map((msg, index) => (
-          <div key={index}>
-            <strong>{msg.name}</strong>: {msg.content}: {msg.timeStamp}
-          </div>
-        ))}
+        <div>
+        {messages.map((msg, index) => {
+          const style = {
+            textAlign : msg.name === "김승원" ? "right" : "left"
+          };
+          return(
+            <div key={index} style={style}>
+              {msg.name === "김승원" ? (
+                <div>{msg.name}: {msg.content}: {msg.timeStamp}</div>
+              ) : (
+              <span>{msg.name} : {msg.content}: {msg.timeStamp}</span>
+              )}
+            </div>
+          );
+        })}
+        </div>
       </div>
     </>
   );
