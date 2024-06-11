@@ -12,7 +12,7 @@ const DefaultLayout = ({ children }) => {
             <br/>
             {children}
             <br/>
-            <Footer/>
+            {/* <Footer/> */}
             <br/>
             <br/>
         </>
