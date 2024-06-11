@@ -13,8 +13,8 @@ const ChatPage = () => {
   const [nickname, setNickname] = useState('');
   const [stompClient, setStompClient] = useState(null);
 
-  //const url = `http://175.45.200.47`;///
-  const url = `http://localhost`;
+  const url = `http://175.45.200.47`;/// 배포용
+  // const url = `http://localhost`;
 
   const scrollContainerRef = useRef(null);
 
