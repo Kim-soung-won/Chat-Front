@@ -11,7 +11,8 @@ const ChatPage = () => {
   const [nickname, setNickname] = useState('');
   const [stompClient, setStompClient] = useState(null);
 
-  const url = `http://175.45.200.47`;
+  //const url = `http://175.45.200.47`;///
+  const url = `http://localhost`;
 
   useEffect(() => {
     const socket = new SockJS(`${url}/ws`);
@@ -72,18 +73,7 @@ const ChatPage = () => {
 
   return (
     <>
-      <h1>여기는 채팅 페이지</h1>
-      <div>
-        <label>사용자 이름: </label>
-        <input type="text" value={nickname} onChange={handlerNickNameChange} />
-      </div>
-      <div>
-        <label>채팅 입력: </label>
-        <input type="text" value={message} onChange={handlerMessageChange} />
-        <button onClick={sendMessage}>보내기</button>
-      </div>
-      <div>
-        <h2>채팅 로그</h2>
+      
         <div>
         {messages.map((msg, index) => {
           const style = {
@@ -100,6 +90,17 @@ const ChatPage = () => {
           );
         })}
         </div>
+      
+      <br/>
+      <br/>
+      <div>
+        <label>사용자 이름: </label>
+        <input type="text" value={nickname} onChange={handlerNickNameChange} />
+      </div>
+      <div>
+        <label>채팅 입력: </label>
+        <input type="text" value={message} onChange={handlerMessageChange} />
+        <button onClick={sendMessage}>보내기</button>
       </div>
     </>
   );
