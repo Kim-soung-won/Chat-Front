@@ -110,17 +110,21 @@ const ChatPage = () => {
             <div key={index} style={style} >
               {msg.name === userId ? (
                 <div className="chat chat-end">
-                  <div className={`chat-bubble text-white bg-blue-500`}>
-                    {msg.content} : {msg.name}
+                  <div className="flex">
+                    <div className=" text-xs">{msg.timeStamp}</div>
+                    <div className={`chat-bubble text-white bg-blue-500`}>
+                      {msg.content} : {msg.name}
+                    </div>
                   </div>
-                  <div>{msg.timeStamp}</div>
                 </div>
               ) : (
               <div className="chat chat-start">
-                <div className={`chat-bubble text-black bg-slate-100`}>
-                {msg.name} : {msg.content}
+                <div className="flex">
+                  <div className={`chat-bubble text-black bg-slate-100`}>
+                    {msg.name} : {msg.content}
+                  </div>
+                  <div className="text-xs">{msg.timeStamp} </div>
                 </div>
-                <div>{msg.timeStamp} </div>
               </div>
               )}
             </div>
@@ -131,11 +135,9 @@ const ChatPage = () => {
       <br/>
       <br/>
       <br/>
-      <div ref={scrollContainerRef} className="fixed bottom-2 w-full">
-        <span className="w-full grid">
-          <input type="text" value={message} onChange={handlerMessageChange} onKeyDown={handlerKeyDown} className="border text-sm rounded-lg block w-full p-2.5 bg-gray-300 border-gray-"/>
+      <div ref={scrollContainerRef} className="fixed bottom-0 w-full flex">
+          <input type="text" value={message} onChange={handlerMessageChange} onKeyDown={handlerKeyDown} className="border text-sm rounded-lg block p-2.5 w-full bg-gray-300 border-gray-"/>
           <button onClick={sendMessage} className='btn btn-info'>보내기</button>
-        </span>
       </div>
     </>
   );
