@@ -17,7 +17,7 @@ const ChatPage = () => {
   const [userId, setUserid] = useState(''); // user id 
   const [chatRoomId, setChatRoomId] = useState(''); // chat room id
 
-  const url = `http://223.130.156.241:8000`;/// 배포용
+  const url = `http://223.130.156.241:8080`;/// 배포용
   // const url = `http://localhost:8080`;
   const scrollContainerRef = useRef(null);
 
