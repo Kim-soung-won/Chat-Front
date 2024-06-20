@@ -40,3 +40,10 @@
     transform: rotate(360deg);
   }
 }
+
+.toastContainer {
+  top: 60px !important;
+  right: auto !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+}

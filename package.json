@@ -8,6 +8,7 @@
     "@fontsource/roboto": "^5.0.13",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@mui/icons-material": "^5.15.19",
+    "@mui/material": "^5.15.20",
     "@mui/styled-engine": "^5.15.14",
     "@reduxjs/toolkit": "^2.2.5",
     "@testing-library/jest-dom": "^5.17.0",
@@ -33,7 +34,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "set PORT=80 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
