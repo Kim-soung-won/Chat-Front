@@ -17,8 +17,8 @@ const ChatPage = () => {
   const [chatRoomId, setChatRoomId] = useState(''); // chat room id
   const [clientState, setClient] = useState(null);
 
-  // const url = `http://223.130.156.241:8080`;/// 배포용
-  const url = `http://localhost:8080`;
+  const url = `http://223.130.156.241:8080`;/// 배포용
+  // const url = `http://localhost:8080`; // 로컬 용
   const scrollContainerRef = useRef(null);
 
   useEffect(() => {
@@ -71,9 +71,7 @@ const ChatPage = () => {
         smooth: false,
       });
     }
-    
   }, [messages]);
-
 
   const handlerKeyDown= (e) => {
     if(e.key === 'Enter' && message.trim()){
