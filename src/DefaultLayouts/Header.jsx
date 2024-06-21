@@ -14,48 +14,10 @@ export default function Header() {
     const theme = useTheme();
     const isMobileView = useMediaQuery(theme.breakpoints.down('sm'));
 
-    // const Toast = Swal.mixin({
-    //     toast: true,
-    //     position: 'top-end',
-    //     showConfirmButton: false,
-    //     timer: 2000,
-    //     timerProgressBar: true,
-    //     didOpen: (toast) => {
-    //         toast.addEventListener('mouseenter', Swal.stopTimer)
-    //         toast.addEventListener('mouseleave', Swal.resumeTimer)
-    //     },
-    //     customClass: {
-    //         container: 'toastContainer',
-    //     }
-    // })
 
-
-    // // 실시간 알림 SSE 요청
-    // useEffect(() => {
-
-    //     const intervalId = setInterval(() => {
-    //         if (eventSource && eventSource.readyState === EventSource.CLOSED) {
-    //             console.log('SSE connection closed, reconnecting...');
-    //         }
-    //     }, 5000);
-
-    //     return () => {
-    //         clearInterval(intervalId);
-    //         if (eventSource) {
-    //             eventSource.close();
-    //         }
-    //     };
-
-    // }, []);
-
-    // 알림 리스트
-    // useEffect(() => {
-    //     if (notification) {
-    //         console.log("notification data", notification);
-    //     }
-    // }, [notification]);
-
-    // 로그아웃 요청 api
+    const goToMain = () => {
+        window.location.href = "http://175.106.99.78";
+    }
 
 
 
@@ -73,20 +35,18 @@ export default function Header() {
                 }}
             >
                 <Toolbar>
-                    <Typography
-                        variant="h6"
-                        component="div"
-                        sx={{
-                            mr: 2,
-                            flexShrink: 0,
-                            fontSize: isMobileView ? '1rem' : '1.25rem',
-                            color: 'black',
-                        }}
-                    >
-                        <a href="http://175.106.99.78" style={{ color: 'black', textDecoration: 'none' }}>
-                            냥가왈부
-                        </a>
-                    </Typography>
+                        <Box
+                            component="img"
+                            alt="logo"
+                            src="https://kr.object.ncloudstorage.com/palettepets/logo/logo.png"
+                            onClick={goToMain}
+                            sx={{
+                                width: isMobileView ? '18%' : '10%',
+                                height: 'auto',
+                                cursor: 'pointer',
+                            }}
+                        />
+                
 
                     <Box sx={{ flexGrow: 1 }} />
                     <Box
@@ -97,7 +57,6 @@ export default function Header() {
                             pr: isMobileView ? 2 : 0,
                         }}
                     >
-                        
                         
                     </Box>
                 </Toolbar>

@@ -3,9 +3,7 @@ import { useParams } from "react-router-dom";
 import Stomp from 'stompjs';
 import SockJS from "sockjs-client";
 import axios from "axios";
-import css from "./Chat.css";
 import { animateScroll as scroll } from "react-scroll";
-import { width } from "@mui/system";
 
 const ChatPage = () => {
   const { id } = useParams();
@@ -17,21 +15,23 @@ const ChatPage = () => {
   const [stompClient, setStompClient] = useState(null);
   const [userId, setUserid] = useState(''); // user id 
   const [chatRoomId, setChatRoomId] = useState(''); // chat room id
+  const [clientState, setClient] = useState(null);
 
-  const url = `http://223.130.156.241:8080`;/// 배포용
-  // const url = `http://localhost:8080`;
+  // const url = `http://223.130.156.241:8080`;/// 배포용
+  const url = `http://localhost:8080`;
   const scrollContainerRef = useRef(null);
 
   useEffect(() => {
     const idParts = id.split("-");
     const partsCombined = idParts.slice(0, 5).join("-");
     const userName = atob(idParts[5]);
-    setChatRoomId(partsCombined);
-    setUserid(userName);
-    console.log("userName : ", userName);
-    console.log("채팅방 URL",partsCombined)
     const socket = new SockJS(`${url}/ws`);
     const client = Stomp.over(socket);
+    setChatRoomId(partsCombined);
+    setUserid(userName);
+    setClient(client);
+    console.log("userName : ", userName);
+    console.log("채팅방 URL",partsCombined)
 
     client.connect({}, (frame) => {
       console.log('Connected: ' + frame);
@@ -63,6 +63,7 @@ const ChatPage = () => {
   }, []);
 
   useEffect(() => {
+    console.log("reload!!")
     if (scrollContainerRef.current) {
       scroll.scrollToBottom({
         containerId: 'scroll-container',
@@ -70,12 +71,10 @@ const ChatPage = () => {
         smooth: false,
       });
     }
+    
   }, [messages]);
 
-  const handlerNickNameChange = (e) => {
-    setNickname(e.target.value);
-    console.log(nickname);
-  }
+
   const handlerKeyDown= (e) => {
     if(e.key === 'Enter' && message.trim()){
       sendMessage();
@@ -114,17 +113,17 @@ const ChatPage = () => {
                   <div className="flex">
                     <div className=" text-xs">{msg.timeStamp}</div>
                     <div className={`chat-bubble text-white bg-blue-500`}>
-                      {msg.content} : {msg.name}
+                      {msg.content}
                     </div>
                   </div>
                 </div>
               ) : (
               <div className="chat chat-start">
                 <img src={`https://kr.object.ncloudstorage.com/palettepets/member/Profile/20220509173224_d9N4ZGtBVR.jpeg` }
-                className={`w-10 rounded-full`} ></img>
+                className={`w-10 rounded-full mx-1`} ></img>
                 <div className="flex">
                   <div className={`chat-bubble text-black bg-slate-100`}>
-                    {msg.name} : {msg.content}
+                     {msg.content}
                   </div>
                   <div className="text-xs">{msg.timeStamp} </div>
                 </div>
