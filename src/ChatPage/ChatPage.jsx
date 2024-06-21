@@ -18,7 +18,7 @@ const ChatPage = () => {
   const [clientState, setClient] = useState(null);
 
   const url = `http://223.130.156.241:8080`;/// 배포용
-  // const url = `http://localhost:8080`; // 로컬 용
+  // const url = `http://localhost:8080`; // 로컬 용/
   const scrollContainerRef = useRef(null);
 
   useEffect(() => {
@@ -83,14 +83,18 @@ const ChatPage = () => {
   }
   const sendMessage = () => { 
     console.log("SEND MESSAGE",nickname);
+    let date = new Date();
+    console.log("date :",date);
     if(message.trim() && stompClient && stompClient.connected){
       const chatMessage = {
         id : chatRoomId,
         name: userId,
-        content: message
+        content: message.trim(),
+        timeStamp: date.getHours() + ":" + date.getMinutes()
       }
       console.log("IS OK");
       stompClient.send('/app/chat', {}, JSON.stringify(chatMessage));
+      setMessages((prevMessages) => [...prevMessages, chatMessage]); // messages 상태 업데이트
       setMessage('');
     }else {
       console.error("Connection not established or no message");
