@@ -135,10 +135,6 @@ const ChatPage = () => {
           );
         })}
         </div>
-      
-      <br/>
-      <br/>
-      <br/>
       <div ref={scrollContainerRef} className="fixed bottom-0 w-full flex">
           <input type="text" value={message} onChange={handlerMessageChange} onKeyDown={handlerKeyDown} className="border text-sm rounded-lg block p-2.5 w-full bg-gray-300 border-gray-"/>
           <button onClick={sendMessage} className='btn btn-info'>보내기</button>
