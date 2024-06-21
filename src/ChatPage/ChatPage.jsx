@@ -3,8 +3,9 @@ import { useParams } from "react-router-dom";
 import Stomp from 'stompjs';
 import SockJS from "sockjs-client";
 import axios from "axios";
-import Apps from "../App.css";
+import css from "./Chat.css";
 import { animateScroll as scroll } from "react-scroll";
+import { width } from "@mui/system";
 
 const ChatPage = () => {
   const { id } = useParams();
@@ -120,7 +121,7 @@ const ChatPage = () => {
               ) : (
               <div className="chat chat-start">
                 <img src={`https://kr.object.ncloudstorage.com/palettepets/member/Profile/20220509173224_d9N4ZGtBVR.jpeg` }
-                className={Apps.receverImg} ></img>
+                className={`w-10 rounded-full`} ></img>
                 <div className="flex">
                   <div className={`chat-bubble text-black bg-slate-100`}>
                     {msg.name} : {msg.content}
