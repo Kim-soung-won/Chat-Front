@@ -119,6 +119,7 @@ const ChatPage = () => {
                 </div>
               ) : (
               <div className="chat chat-start">
+                <img src={`https://kr.object.ncloudstorage.com/palettepets/member/Profile/20220509173224_d9N4ZGtBVR.jpeg`}></img>
                 <div className="flex">
                   <div className={`chat-bubble text-black bg-slate-100`}>
                     {msg.name} : {msg.content}
