@@ -94,7 +94,6 @@ const ChatPage = () => {
       }
       console.log("IS OK");
       stompClient.send('/app/chat', {}, JSON.stringify(chatMessage));
-      setMessages((prevMessages) => [...prevMessages, chatMessage]); // messages 상태 업데이트
       setMessage('');
     }else {
       console.error("Connection not established or no message");
