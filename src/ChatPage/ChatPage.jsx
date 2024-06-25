@@ -35,8 +35,8 @@ const ChatPage = () => {
 
     client.connect({}, (frame) => {
       console.log('Connected: ' + frame);
-      console.log("SUBSCRIBE : ",`/topic/messages/${chatRoomId}`)
-      client.subscribe(`/topic/messages/${chatRoomId}`, (message) => {
+      console.log("SUBSCRIBE : ",`/topic/messages/${partsCombined}`)
+      client.subscribe(`/topic/messages/${partsCombined}`, (message) => {
         const receivedMessage = JSON.parse(message.body);
         console.log("receive : ",receivedMessage)
         setMessages((prevMessages) => [...prevMessages, receivedMessage]);
