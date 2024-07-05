@@ -17,7 +17,7 @@ const ChatPage = () => {
   const [chatRoomId, setChatRoomId] = useState(''); // chat room id
   const [clientState, setClient] = useState(null);
 
-  const url = `http://223.130.156.241:8080`;/// 배포용
+  const url = `http://175.45.204.119:9090`;/// 배포용
   // const url = `http://localhost:8080`; // 로컬 용/
   const scrollContainerRef = useRef(null);
 
@@ -30,12 +30,8 @@ const ChatPage = () => {
     setChatRoomId(partsCombined);
     setUserid(userName);
     setClient(client);
-    console.log("userName : ", userName);
-    console.log("채팅방 URL",partsCombined)
 
     client.connect({}, (frame) => {
-      console.log('Connected: ' + frame);
-      console.log("SUBSCRIBE : ",`/topic/messages/${partsCombined}`)
       client.subscribe(`/topic/messages/${partsCombined}`, (message) => {
         const receivedMessage = JSON.parse(message.body);
         console.log("receive : ",receivedMessage)
@@ -63,7 +59,6 @@ const ChatPage = () => {
   }, []);
 
   useEffect(() => {
-    console.log("reload!!")
     if (scrollContainerRef.current) {
       scroll.scrollToBottom({
         containerId: 'scroll-container',
@@ -83,6 +78,7 @@ const ChatPage = () => {
   }
   const sendMessage = () => { 
     console.log("SEND MESSAGE",nickname);
+    console.log("StompClient : ", stompClient);
     let date = new Date();
     console.log("date :",date);
     if(message.trim() && stompClient && stompClient.connected){
