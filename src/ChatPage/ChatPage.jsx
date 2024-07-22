@@ -4,6 +4,8 @@ import Stomp from 'stompjs';
 import SockJS from "sockjs-client";
 import axios from "axios";
 import { animateScroll as scroll } from "react-scroll";
+import jwtAxios from "../JWT/jwtAxios";
+import { url } from "../utils/single";
 
 const ChatPage = () => {
   const { id } = useParams();
@@ -17,8 +19,7 @@ const ChatPage = () => {
   const [chatRoomId, setChatRoomId] = useState(''); // chat room id
   const [clientState, setClient] = useState(null);
 
-  const url = `http://175.45.204.119:9090`;/// 배포용
-  // const url = `http://localhost:9090`; // 로컬 용/
+
   const scrollContainerRef = useRef(null);
 
   useEffect(() => {
@@ -42,7 +43,7 @@ const ChatPage = () => {
       console.error("STOMP ERROR", error);
     })
 
-    axios.get(`${url}/chat/history?id=${partsCombined}&user=${userName}`)
+    jwtAxios.get(`${url}/chat/history?id=${partsCombined}&user=${userName}`)
       .then((response) => {
         setMessages(response.data);
       })
