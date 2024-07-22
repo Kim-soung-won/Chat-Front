@@ -4,6 +4,7 @@ import Toolbar from '@mui/material/Toolbar';
 import {CssBaseline, Typography, useMediaQuery} from "@mui/material";
 import {Link, useNavigate} from 'react-router-dom';
 import "../App.css";
+import logo_image from "../images/logo.png";
 import {useTheme} from "@mui/material/styles";
 
 export default function Header() {
@@ -38,7 +39,7 @@ export default function Header() {
                         <Box
                             component="img"
                             alt="logo"
-                            src="https://kr.object.ncloudstorage.com/palettepets/logo/logo.png"
+                            src={logo_image}
                             onClick={goToMain}
                             sx={{
                                 width: isMobileView ? '18%' : '10%',
