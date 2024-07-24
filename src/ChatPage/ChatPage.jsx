@@ -43,7 +43,7 @@ const ChatPage = () => {
       console.error("STOMP ERROR", error);
     })
 
-    jwtAxios.get(`${url}/chat/history?id=${partsCombined}&user=${userName}`)
+    axios.get(`${url}/chat/history?id=${partsCombined}&user=${userName}`)
       .then((response) => {
         setMessages(response.data);
       })
